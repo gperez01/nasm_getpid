@@ -34,8 +34,6 @@ _start:
 
   lea ebp, [PID+7] ; LEA (Load Effective Address) PID + 6 bytes into the buffer
 
-  jmp _ascii_conv ; jump into the ASCII conv. loop
-
 _ascii_conv:
 
   div ebx ; divide the sys_getpid return value
@@ -53,8 +51,6 @@ _ascii_conv:
   dec eax ; reset eax to its original value. if eax == 0 --> ZF = 0; else --> ZF = 1
 
   jnz _ascii_conv ; restart the loop if eax != 0
-
-  jmp _print_pid ; jump to the _print_pid section if eax == 0;
 
 _print_pid:
 
